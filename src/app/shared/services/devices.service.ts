@@ -11,7 +11,7 @@ import { BaseHttpService } from 'src/app/core/services/basehttp.service';
 export class DevicesService {
 
     private userUid: string = `G3KqXnw3S5Ob5EfUZRoYHADN40m1`;
-    private devicesUrl: string = `http://redux-test-lb-408227618.eu-central-1.elb.amazonaws.com/v1/devices/user/`;
+    private devicesUrl: string = `https://redux-dev.shellyapp.it/v1/devices/user/`;
 
     public constructor(protected http: BaseHttpService) {
 
