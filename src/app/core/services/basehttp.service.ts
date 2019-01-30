@@ -18,7 +18,6 @@ export class BaseHttpService {
         const h = new HttpHeaders({
             'Content-Type': 'application/json'
         });
-        debugger;
         return h;
     }
 }

@@ -1,5 +1,1 @@
-<p>
-  devices works!
-</p>
-
-<p>{{ response | json }}</p>
+<app-device *ngFor="let device of devices" [device]="device"></app-device>

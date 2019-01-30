@@ -1,3 +1,5 @@
-<p>
-  device works!
-</p>
+<ul>
+    <li *ngFor="let key of deviceKeys">
+        <span><strong>{{key}}</strong>: {{(key === 'lastLocation') ? (device[key] | json) : device[key]}}</span>
+    </li>
+</ul>

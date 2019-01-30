@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { tap } from 'rxjs/operators';
+import { tap, catchError } from 'rxjs/operators';
 import { DevicesService } from 'src/app/shared/services/devices.service';
+
+import { IDevice } from '../core/models/device.model';
 
 @Component({
     selector: 'app-devices',
@@ -9,7 +11,7 @@ import { DevicesService } from 'src/app/shared/services/devices.service';
 })
 export class DevicesComponent implements OnInit {
 
-    private response: IDevice[];
+    public devices: IDevice[];
 
     public constructor(protected devicesSvc: DevicesService) { }
 
@@ -18,19 +20,29 @@ export class DevicesComponent implements OnInit {
     }
 
     private getData(): void {
-        this.devicesSvc.getDevices().pipe(
-            tap(response => this.response = response.data)
-        ).subscribe();
+        // this.devicesSvc.getDevices().pipe(
+        //     tap(response => this.devices = response.data)
+        // ).subscribe({
+        //     error: err => {
+        //         console.log('There was an error sorry :(');
+        //     }
+        // });
+
+        this.devicesSvc.getDevices().subscribe(
+            res => {
+                this.devices = res.data;
+                const z = 9;
+                this.devicesSvc.getDevices().subscribe(res2 => {
+
+                });
+                
+            },
+            err => console.log('Sorry there was an error. D:'),
+        );
     }
 
 }
 
-export interface IDevice {
-    userUid: string;
-    fcmToken: string;
-    deviceUid: string;
-    lastLocation: {
-        type: string,
-        coordinates: number[] // in order [lng, lat]
-    };
-}
+
+
+
