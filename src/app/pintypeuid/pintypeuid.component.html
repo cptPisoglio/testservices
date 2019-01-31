@@ -1,0 +1,10 @@
+<div class="container">
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <input type="text" formControlName="uid" class="form-control" placeholder="Enter uid for pin type">
+  </div>
+</form>
+</div>
+<div class="card-columns">
+  <app-pintype *ngIf="pin !== null" [pintype]="pin"></app-pintype>
+</div>
